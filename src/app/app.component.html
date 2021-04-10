@@ -1,0 +1,91 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- <fa name="cog" animation="spin"></fa> -->
+  <ul class="navbar-nav ml ">
+    <li class="nav-item">
+      <i class="fa fa-pencil" title="Edit"></i>
+      <a class="navbar-brand" routerLink="/">Ads Managment API</a>
+    </li>
+  </ul>
+  <!-- Navber without login -->
+  <div id="navbarNav" class="collapse navbar-collapse" *ngIf="!advertisor&&!admin">
+    <ul class="navbar-nav ml ">
+      <!-- <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/ads-list">Show ADS</a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/register">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/login">Login</a>
+      </li>
+    </ul>
+
+  </div>
+  <!-- Advertisor Mode  -->
+  <div id="navbarNav" class="collapse navbar-collapse" *ngIf="advertisor">
+    <ul class="navbar-nav ml ">
+      <!-- <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/ads-list">Show ADS</a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/add-ads">Add Adversment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" (click)="logout()" routerLink="">Logout</a>
+      </li>
+
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <p style="margin-top: 8px;" class="nav-link" routerLinkActive="active" routerLink="/user/{{id}}">Hi
+          ,{{username}}</p>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" (click)="logout()" routerLink=""><img
+            src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar"></a>
+      </li>
+      <!--  -->
+    </ul>
+  </div>
+
+
+  <!-- Admin Mode  -->
+  <div id="navbarNav" class="collapse navbar-collapse" *ngIf="admin" >
+    <ul class="navbar-nav ml ">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/ads-list">Show ADS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/allusers">Show All Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/tags-list">Show TagS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/category-list">Show Categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/add-ads">Add Adversment</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" (click)="logout()" routerLink="">Logout</a>
+      </li>
+    
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <p style="margin-top: 8px;" class="nav-link" routerLinkActive="active" routerLink="/user/{{id}}">Hi
+          ,{{username}}</p>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" (click)="logout()" routerLink=""><img
+            src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar"></a>
+      </li>
+      <!--  -->
+    </ul>
+  </div>
+
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Ads List</h2>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <!-- <th scope="col">Id</th> -->
+          <th scope="col">Title</th>
+          <th scope="col">Type</th>
+          <th scope="col">Tag</th>
+          <th scope="col">Category</th>
+          <th scope="col">Advertisor</th>
+          <th scope="col">Description</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th class="text-center" scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of Ads; let i = index;">
+          <!-- <th scope="row">{{item._id}}</th> -->
+          <td>{{item.title}}</td>
+          <td>{{item.type}}</td>
+          <td>{{item.tag}}</td>
+          <td>{{item.category}}</td>
+          <td>{{item.advertisor}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.start_date}}</td>
+          <td>{{item.end_date}}</td>
+          <td class="text-center">
+            <button class="btn btn-sm btn-primary" routerLink="/edit-ads/{{item._id}}">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="delete(item._id, i)">Delete</button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

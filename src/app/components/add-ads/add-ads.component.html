@@ -1,0 +1,75 @@
+<div class="row justify-content-center mt-3">
+
+  <div class="col-md-3">
+  <form class="form-inline" [formGroup]="tagForm" (ngSubmit)="addtag()">
+    <div class="form-group mb-2">
+      <label for="staticEmail2" class="sr-only">Add Tag </label>
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="tagName" class="sr-only">Tag Name</label>
+      <input type="text" class="form-control" formControlName="tagName" placeholder="Add Tag name " >
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Add Tag</button>
+  </form>
+  </div>
+  <div class="col-md-4">
+      <form [formGroup]="adsForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Title</label>
+          <input class="form-control" type="text" formControlName="title" required>
+        </div>
+        <div class="form-group">
+          <label>type</label>
+          <input class="form-control" type="text" formControlName="type" required>
+        </div>
+        <label>Choose Category Name  </label> <pre></pre>
+       
+        <div class="btn-group">
+          <select name="project" class="form-control" (change)="changeCategory($event)" > 
+            <option *ngFor="let opt of categories" [value]="opt.categoryName">{{opt.categoryName}}</option>
+           <!-- Dynamic list of options based on above two select box values -->
+          </select>
+        </div>
+        <pre></pre>
+        <label> Choose Tag Name  </label> <pre></pre>
+       
+        <div class="btn-group">
+          <select name="project" class="form-control" (change)="changeTag($event)"> 
+            <option *ngFor="let opt of tags" [value]="opt.tagName">{{opt.tagName}}</option>
+           <!-- Dynamic list of options based on above two select box values -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label> Description </label>
+          <input class="form-control" type="text" formControlName="description" required>
+        </div>
+
+        <div class="form-group">
+          <label> ImageUrl </label>
+          <input class="form-control" type="text" formControlName="photoUrl">
+        </div>
+        
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" type="submit">Add Ads</button>
+        </div>
+      </form>
+  
+
+  </div>
+  <div class="col-md-4">
+
+  <form class="form-inline" [formGroup]="categoryForm" (ngSubmit)="addcategory()">
+    <div class="form-group mb-2">
+      <label for="staticEmail2" class="sr-only">Add Category </label>
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="inputPassword2" class="sr-only">Category Name</label>
+      <input type="text" class="form-control" formControlName="categoryName" placeholder="Add Category Name">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Add Category</button>
+  </form>
+ </div>
+
+</div>

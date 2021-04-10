@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Ads List</h2>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h5>Filter By Tags</h5>
+      <ul class="checkbox-items">
+        <li *ngFor="let item of tags">
+          <input type="checkbox" name="" id="" [(ngModel)]="item.isChecked"
+            (change)="changeSelection()">{{item.tagName}}
+        </li>
+      </ul>
+
+    </div>
+    <div class="col-sm-4">
+      <h5>Filter By Category Name</h5>
+      <ul class="checkbox-items">
+        <li *ngFor="let item of category">
+          <input type="checkbox" name="" id="" [(ngModel)]="item.isChecked"
+            (change)="changeSelection()">{{item.categoryName}}
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  <div class="row" *ngFor="let item of Ads; let i = index;">
+
+    <div class="col-sm-6">
+      <div class="card">
+        <div *ngIf="item.photoUrl; else elseNotDone">
+          <img class="card-img-top" width="150px" height="400px" src="{{item.photoUrl}}" alt="Card image cap">
+        </div>
+        <ng-template #elseNotDone>
+          <img class="card-img-top" width="150px" height="400px" src="{{image}}" alt="Card image cap">
+
+        </ng-template>
+
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <h5 class="card-title">{{item.type}}</h5>
+          <h5 class="card-title">{{item.category}}</h5>
+          <h5 class="card-title">#{{item.tag}}</h5>
+          <p class="card-text">{{item.description}}.</p>
+          <a href="#" class="btn btn-primary">More Detials</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
