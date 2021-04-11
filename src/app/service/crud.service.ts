@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Ads, Advertisor,Tag, Category } from './ads';
+import { Ads, Advertisor, Tag, Category } from './ads';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -37,18 +37,18 @@ export class CrudService {
   }
 
   // Get single object
-  GetOneAds(id:any): Observable<any> {
+  GetOneAds(id: any): Observable<any> {
     let API_URL = `${this.REST_API}/read-ads/${id}`;
     return this.httpClient.get(API_URL, { headers: this.httpHeaders })
       .pipe(map((res: any) => {
-          return res || {}
-        }),
+        return res || {}
+      }),
         catchError(this.handleError)
       )
   }
 
   // Update
-  updateBook(id:any, data:any): Observable<any> {
+  updateBook(id: any, data: any): Observable<any> {
     let API_URL = `${this.REST_API}/update-ads/${id}`;
     return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
       .pipe(
@@ -57,12 +57,12 @@ export class CrudService {
   }
 
   // Delete
-  deleteAds(id:any): Observable<any> {
+  deleteAds(id: any): Observable<any> {
     let API_URL = `${this.REST_API}/delete-ads/${id}`;
     console.log(API_URL)
-    return this.httpClient.delete(API_URL, { headers: this.httpHeaders}).pipe(
-        catchError(this.handleError)
-      )
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders }).pipe(
+      catchError(this.handleError)
+    )
   }
 
   // user funcitons
@@ -84,18 +84,18 @@ export class CrudService {
   }
 
   // Get single object
-  logIn(data:Advertisor): Observable<any> {
+  logIn(data: Advertisor): Observable<any> {
     let API_URL = `${this.REST_User_API}/login`;
     return this.httpClient.post(API_URL, data)
       .pipe(map((res: any) => {
-          return res || {}
-        }),
+        return res || {}
+      }),
         catchError(this.handleError)
       )
   }
 
   // Update
-  updateAdvertisor(id:any, data:any): Observable<any> {
+  updateAdvertisor(id: any, data: any): Observable<any> {
     let API_URL = `${this.REST_User_API}/update/${id}`;
     return this.httpClient.put(API_URL, data, { headers: this.httpHeaders })
       .pipe(
@@ -104,13 +104,13 @@ export class CrudService {
   }
 
   // Delete
-  deleteAdvertisor(id:any): Observable<any> {
+  deleteAdvertisor(id: any): Observable<any> {
 
     let API_URL = `${this.REST_User_API}/delete/${id}`;
     console.log(API_URL)
-    return this.httpClient.delete(API_URL, { headers: this.httpHeaders}).pipe(
-        catchError(this.handleError)
-      )
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders }).pipe(
+      catchError(this.handleError)
+    )
   }
   //adding tag name
   addTag(data: Ads): Observable<any> {
@@ -132,45 +132,54 @@ export class CrudService {
         catchError(this.handleError)
       )
   }
-  //adding category name
-  getAdsByTags(data){
-    console.log("result :")
+  //filter By Tags
+  getAdsByTags(data) {
     console.log(data)
-    let API_URL = `${this.REST_API}/add-category`;
+    let API_URL = `${this.REST_API}/get-adsWithTags`;
     return this.httpClient.post(API_URL, data)
       .pipe(
         catchError(this.handleError)
       )
-   }
-  
+  }
+   //filter By Category
+   getAdsByCategory(data) {
+    console.log("data")
+    console.log(data)
+    let API_URL = `${this.REST_API}/get-adsWithCompnents`;
+    return this.httpClient.post(API_URL, data)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
   // get all tags 
   gettags() {
-  return this.httpClient.get(`${this.REST_API}/all-tags`);
-}
+    return this.httpClient.get(`${this.REST_API}/all-tags`);
+  }
   // get all category 
   getcategories() {
     return this.httpClient.get(`${this.REST_API}/all-category`);
   }
   // delete Category
-    deleteCategory(id:any): Observable<any> {
+  deleteCategory(id: any): Observable<any> {
 
     let API_URL = `${this.REST_API}/delete-category/${id}`;
     console.log(API_URL)
-    return this.httpClient.delete(API_URL, { headers: this.httpHeaders}).pipe(
-        catchError(this.handleError)
-      )
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders }).pipe(
+      catchError(this.handleError)
+    )
   }
-   // Delete tag
-   deleteTag(id:any): Observable<any> {
+  // Delete tag
+  deleteTag(id: any): Observable<any> {
 
     let API_URL = `${this.REST_API}/delete-tag/${id}`;
     // console.log(API_URL)
-    return this.httpClient.delete(API_URL, { headers: this.httpHeaders}).pipe(
-        catchError(this.handleError)
-      )
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders }).pipe(
+      catchError(this.handleError)
+    )
   }
 
-  
+
 
   // Error 
   handleError(error: HttpErrorResponse) {

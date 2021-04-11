@@ -118,8 +118,14 @@ adsRoute.route('/add-category').post((req, res, next) => {
 // get ads with tags
 
 adsRoute.route('/get-adsWithTags').post((req, res, next) => {
+  const tagNames = req.body; 
+  const tags =[]
+  tagNames.forEach((value,index)=>{
+    tags.push(value.tagName)
+  })
+  console.log(tags)
 Ads.find({
-  'tag': { $in: req.body}
+  'tag': { $in: tags}
 }, (error, data) => {
   if (error) {
     return next(error)
@@ -128,7 +134,24 @@ Ads.find({
   }
 })
 })
-
+// get ads with category
+adsRoute.route('/get-adsWithCompnents').post((req, res, next) => {
+  const CategoryNames = req.body; 
+  const categorys =[]
+  CategoryNames.forEach((value,index)=>{
+    categorys.push(value.categoryName)
+  })
+  console.log(categorys)
+Ads.find({
+  'category': { $in: categorys}
+}, (error, data) => {
+  if (error) {
+    return next(error)
+  } else {
+    res.json(data)
+  }
+})
+})
 //delete Category
 adsRoute.route('/delete-category/:id').delete((req, res, next) => {
   Category.findByIdAndRemove(req.params.id, (error, data) => {
