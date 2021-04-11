@@ -16,6 +16,13 @@ export class ListCategoryComponent implements OnInit {
       this.categories =res;
     });    
   }
+  delete(id:any, i:any) {
+    if(window.confirm('Do you want to go ahead?')) {
+      this.crudService.deleteCategory(id).subscribe((res) => {
+        this.categories.splice(i, 1);
+      })
+    }
+  }
 
  
 }

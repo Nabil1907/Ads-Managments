@@ -68,6 +68,7 @@ adsRoute.route('/delete-ads/:id').delete((req, res, next) => {
   })
 })
 
+
 //Add Tag Name 
 adsRoute.route('/add-tag').post((req, res, next) => {
   console.log(req.body)
@@ -124,6 +125,31 @@ Ads.find({
     return next(error)
   } else {
     res.json(data)
+  }
+})
+})
+
+//delete Category
+adsRoute.route('/delete-category/:id').delete((req, res, next) => {
+  Category.findByIdAndRemove(req.params.id, (error, data) => {
+  if (error) {
+    return next(error);
+  } else {
+    res.status(200).json({
+      msg: data
+    })
+  }
+})
+})
+//delte Tag
+adsRoute.route('/delete-tag/:id').delete((req, res, next) => {
+  Tag.findByIdAndRemove(req.params.id, (error, data) => {
+  if (error) {
+    return next(error);
+  } else {
+    res.status(200).json({
+      msg: data
+    })
   }
 })
 })

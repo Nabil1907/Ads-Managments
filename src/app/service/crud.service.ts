@@ -151,6 +151,24 @@ export class CrudService {
   getcategories() {
     return this.httpClient.get(`${this.REST_API}/all-category`);
   }
+  // delete Category
+    deleteCategory(id:any): Observable<any> {
+
+    let API_URL = `${this.REST_API}/delete-category/${id}`;
+    console.log(API_URL)
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders}).pipe(
+        catchError(this.handleError)
+      )
+  }
+   // Delete tag
+   deleteTag(id:any): Observable<any> {
+
+    let API_URL = `${this.REST_API}/delete-tag/${id}`;
+    // console.log(API_URL)
+    return this.httpClient.delete(API_URL, { headers: this.httpHeaders}).pipe(
+        catchError(this.handleError)
+      )
+  }
 
   
 

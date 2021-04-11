@@ -16,5 +16,12 @@ export class ListTagsComponent implements OnInit {
       this.tags =res;
     });    
   }
+  delete(id:any, i:any) {
+    if(window.confirm('Do you want to go ahead?')) {
+      this.crudService.deleteTag(id).subscribe((res) => {
+        this.tags.splice(i, 1);
+      })
+    }
+  }
 
 }
